@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product App</title>
+</head>
+<body>
+
+    <div align="center">
+        <h2>Bundles</h2>
+        <ul id="products" />
+    </div>
+    <div>
+        <h3>Age</h3>
+        <input type="number" id="age" size="5" />
+        <h3>Are you studend? (yes/no)</h3>
+        <input type="text" id="isStudent" size="5" />
+        <h3>Income</h3>
+        <input type="text" id="income" size="5" />
+        <br/>
+        <br/>
+        <input type="button" value="Search" onclick="find();" />
+        <p id="product" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/bundle';
+        var socketUri = 'api/socket'
+
+        $(document).ready(function () {
+            // Send an AJAX request
+            $.getJSON(uri)
+                .done(function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, item) {
+                        // Add a list item for the product.
+                        $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+                    });
+                });
+        });
+
+        function formatItem(item) {
+            return item.Name + ': $' + item.Price;
+        }
+
+        function find() {
+            var id = $('#age').val();
+            var isStudent = $('#isStudent').val();
+            var income = $('#income').val();
+
+            $.getJSON(uri + '/' + id + '/' + isStudent)
+                .done(function (data) {
+                    $('#product').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#product').text('Error: ' + err);
+                });
+        }
+
+        //function generate() {
+        //    $.getJSON(randomUri)
+        //        .done(function (data) {
+        //            $('#number').text(formatItem(data));
+        //        })
+        //        .fail(function (jqXHR, textStatus, err) {
+        //            $('#number').text('Error: ' + err);
+        //        });
+        //}
+
+    </script>
+</body>
+</html>

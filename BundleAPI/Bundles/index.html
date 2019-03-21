@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bundles API</title>
+</head>
+<body>
+
+    <div>
+        <h3>Age</h3>
+        <input type="number" id="age" size="5" />
+        <h3>Are you studend? (yes/no)</h3>
+        <input type="checkbox" id="isStudent" size="5" />
+        <h3>Income</h3>
+        <input type="number" id="income" size="5" />
+        <br />
+        <br />
+        <input disabled="disabled" type="button" value="Search" onclick="findBundle();" />
+        <p id="product" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = 'api/bundle';
+        var age = "", isStudent, income = 0;
+
+        $('#age').change(function () {
+            age = $('#age').val();
+            income = $('#income').val();
+
+            if (age !== "")
+                $('[type="button"]').removeAttr('disabled');
+            else
+                $('[type="button"]').attr('disabled');
+        })
+
+        function formatItem(item) {
+            return "Bundle: " + item.Bundles;
+        }
+
+        function findBundle() {
+            age= $('#age').val();
+            isStudent = $('#isStudent').is(':checked');
+            income = $('#income').val();
+
+            $.getJSON(uri + '/' + age + '/' + isStudent + '/' + income)
+                .done(function (data) {
+                    console.log(data);
+                    $('#product').text(formatItem(data));
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    $('#product').text('Error: ' + err);
+                });
+        }
+
+    </script>
+</body>
+</html>

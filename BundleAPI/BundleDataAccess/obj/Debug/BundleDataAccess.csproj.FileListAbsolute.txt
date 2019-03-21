@@ -1,0 +1,6 @@
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\bin\Debug\BundleDataAccess.dll
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\bin\Debug\BundleDataAccess.pdb
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\obj\Debug\BundleDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\obj\Debug\BundleDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\obj\Debug\BundleDataAccess.dll
+C:\Users\wrong\Desktop\Restful API for SEB\BundleAPI\BundleDataAccess\obj\Debug\BundleDataAccess.pdb
